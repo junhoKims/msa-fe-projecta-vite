@@ -30,7 +30,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // remoteEntry.js가 assets 디렉토리에 생성되도록 설정
-        entryFileNames: "assets/[name].js",
+        entryFileNames: "[name].js",
         chunkFileNames: "assets/[name].js",
         assetFileNames: "assets/[name].[ext]",
       },
