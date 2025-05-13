@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import { federation } from "@module-federation/vite";
-import { dependencies } from "./package.json";
+// import { federation } from "@module-federation/vite";
+import federation from "@originjs/vite-plugin-federation";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -13,16 +13,7 @@ export default defineConfig({
       exposes: {
         "./App": "./src/App.tsx",
       },
-      shared: {
-        react: {
-          requiredVersion: dependencies.react,
-          singleton: true,
-        },
-        "react-dom": {
-          requiredVersion: dependencies["react-dom"],
-          singleton: true,
-        },
-      },
+      shared: ["react", "react-dom"],
     }),
   ],
   build: {
