@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import { federation } from '@module-federation/vite';
-import { dependencies } from './package.json';
+import { federation } from "@module-federation/vite";
+import { dependencies } from "./package.json";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -18,10 +18,15 @@ export default defineConfig({
           requiredVersion: dependencies.react,
           singleton: true,
         },
+        "react-dom": {
+          requiredVersion: dependencies["react-dom"],
+          singleton: true,
+        },
       },
     }),
   ],
   build: {
+    modulePreload: false,
     target: "esnext",
     minify: false,
     cssCodeSplit: false,
@@ -31,8 +36,8 @@ export default defineConfig({
       output: {
         // remoteEntry.js가 assets 디렉토리에 생성되도록 설정
         entryFileNames: "[name].js",
-        chunkFileNames: "assets/[name].js",
-        assetFileNames: "assets/[name].[ext]",
+        chunkFileNames: "[name].js",
+        assetFileNames: "[name].[ext]",
       },
     },
   },
